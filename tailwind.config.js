@@ -1,8 +1,8 @@
 const materialPalette = require("./materialPalette.js");
 
-module.exports = ({ dev }) => ({
+module.exports = {
   purge: {
-    enabled: !dev,
+    enabled: process.env.NODE_ENV === "production",
     content: [
       "components/**/*.vue",
       "layouts/**/*.vue",
@@ -17,6 +17,9 @@ module.exports = ({ dev }) => ({
     },
     colors: materialPalette,
     extend: {
+      screens: {
+        xxl: "1812px"
+      },
       height: {
         "72": "18rem",
         "80": "20rem",
@@ -41,9 +44,11 @@ module.exports = ({ dev }) => ({
         "80vh": "80vh",
         "90vh": "90vh"
       },
-      transitionProperty: {}
+      transitionProperty: {
+        shadow: "box-shadow"
+      }
     }
   },
   variants: {},
   plugins: []
-});
+};
