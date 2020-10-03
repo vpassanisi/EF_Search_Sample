@@ -1,10 +1,13 @@
 export const state = () => ({
   items: [],
-  count: 0
+  count: 0,
+  isLoading: false
 });
 
 export const actions = {
   search: async function({ state, commit }, str) {
+    commit("startLoading");
+
     const query = str.replace(/\s/g, "+");
 
     try {
@@ -23,6 +26,7 @@ export const actions = {
     } catch (error) {
       console.log(error);
     }
+    commit("endLoading");
   }
 };
 
@@ -31,7 +35,20 @@ export const mutations = {
     state.items = json.SearchResults;
     state.count = json.CountResults;
   },
-  sort(state, sortBy) {
-    state.items.sort((a, b) => a[sortBy] - b[sortBy]);
+  sortByName(state) {
+    state.items.sort((a, b) => {
+      if (a.Desc1 < b.Desc1) return -1;
+      if (a.Desc1 > b.Desc1) return 1;
+      return 0;
+    });
+  },
+  sortByABBScore(state) {
+    state.items.sort((a, b) => b.ABBScore - a.ABBScore);
+  },
+  startLoading(state) {
+    state.isLoading = true;
+  },
+  endLoading(state) {
+    state.isLoading = false;
   }
 };

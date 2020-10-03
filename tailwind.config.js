@@ -21,6 +21,7 @@ module.exports = {
         xxl: "1812px"
       },
       height: {
+        "fit-content": "fit-content",
         "72": "18rem",
         "80": "20rem",
         "88": "22rem",

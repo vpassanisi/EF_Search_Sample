@@ -1,5 +1,5 @@
 <template>
-  <nav class="h-20 border-b border-gray-500 shadow bg-white">
+  <nav class="relative h-20 border-b border-gray-500 shadow bg-white">
     <div
       class="flex flex-row items-center justify-between w-11/12 mx-auto h-full"
     >
@@ -22,17 +22,24 @@
         <i class="material-icons flex">menu</i>
       </button>
     </div>
+    <div
+      class="absolute w-full bottom-0 progress-line"
+      :class="[isLoading ? 'visible' : 'invisible']"
+    />
   </nav>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 
 export default {
   data: function () {
     return {
       str: "",
     };
+  },
+  computed: {
+    ...mapState(["isLoading"]),
   },
   methods: {
     ...mapActions(["search"]),
@@ -42,3 +49,50 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.progress-line,
+.progress-line:before {
+  height: 3px;
+  width: 100%;
+}
+.progress-line {
+  background-color: #90caf9;
+  display: -webkit-flex;
+  display: flex;
+}
+.progress-line:before {
+  background-color: #1976d2;
+  content: "";
+  -webkit-animation: running-progress 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: running-progress 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+@-webkit-keyframes running-progress {
+  0% {
+    margin-left: 0px;
+    margin-right: 100%;
+  }
+  50% {
+    margin-left: 25%;
+    margin-right: 0%;
+  }
+  100% {
+    margin-left: 100%;
+    margin-right: 0;
+  }
+}
+@keyframes running-progress {
+  0% {
+    margin-left: 0px;
+    margin-right: 100%;
+  }
+  50% {
+    margin-left: 25%;
+    margin-right: 0%;
+  }
+  100% {
+    margin-left: 100%;
+    margin-right: 0;
+  }
+}
+</style>
