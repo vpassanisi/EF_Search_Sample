@@ -8,11 +8,15 @@
         :key="item.FoodItemID"
         :product="item"
       />
+      <div class="text-center" v-if="filteredProducts.length === 0">
+        There are no products to display. Try entering a serch term into the
+        field above :)
+      </div>
     </div>
     <div class="flex items-center justify-center mt-8">
       <button
         class="bg-blue-a400 px-8 py-2 shadow text-white focus:outline-none"
-        @click="addTen"
+        @click="addTwenty"
       >
         Load Next Ten
       </button>
@@ -29,7 +33,7 @@ export default {
     ...mapGetters(["filteredProducts"]),
   },
   methods: {
-    ...mapMutations(["addTen"]),
+    ...mapMutations(["addTwenty"]),
   },
 };
 </script>

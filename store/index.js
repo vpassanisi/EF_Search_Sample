@@ -2,10 +2,9 @@ export const state = () => ({
   items: [],
   count: 0,
   filters: {
-    packageSize: 10,
     brands: []
   },
-  limit: 10,
+  limit: 20,
   isLoading: false
 });
 
@@ -34,7 +33,9 @@ export const getters = {
 export const actions = {
   search: async function({ commit }, str) {
     commit("startLoading");
+
     commit("resetLimit");
+    commit("resetFilters");
 
     const query = str.replace(/\s/g, "+");
 
@@ -79,11 +80,14 @@ export const mutations = {
   sortByABBScore(state) {
     state.items.sort((a, b) => b.ABBScore - a.ABBScore);
   },
-  addTen(state) {
-    state.limit += 10;
+  addTwenty(state) {
+    state.limit += 20;
   },
   resetLimit(state) {
-    state.limit = 10;
+    state.limit = 20;
+  },
+  resetFilters(state) {
+    state.filters.brands = [];
   },
   startLoading(state) {
     state.isLoading = true;

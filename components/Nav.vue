@@ -9,6 +9,7 @@
           class="border h-full w-full border-gray-500 rounded focus:outline-none px-4 focus:shadow transition-shadow duration-300 ease-in-out"
           v-model="str"
           @keydown.enter="handleSearch"
+          placeholder="Search for food products"
           type="text"
         />
         <button

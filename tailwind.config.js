@@ -20,6 +20,9 @@ module.exports = {
       screens: {
         xxl: "1812px"
       },
+      maxHeight: {
+        "64": "16rem"
+      },
       height: {
         "fit-content": "fit-content",
         "72": "18rem",

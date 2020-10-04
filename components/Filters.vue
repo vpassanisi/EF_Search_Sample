@@ -12,7 +12,7 @@
         <option value="name">name</option>
       </select>
     </div>
-    <div>
+    <div class="sm:max-h-64 md:max-h-full overflow-y-scroll">
       <div>Brands:</div>
       <div v-for="brand in brands" :key="brand">
         <input
@@ -45,6 +45,7 @@ export default {
       "sortByABBScore",
       "addBrand",
       "removeBrand",
+      "moreBrands",
     ]),
     handleSort(e) {
       if (e.target.value === "name") this.sortByName();

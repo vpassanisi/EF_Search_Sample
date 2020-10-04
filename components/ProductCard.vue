@@ -1,6 +1,6 @@
 <template>
   <div class="relative p-8 bg-white shadow">
-    <div class="absolute top-0 right-0 mt-4 mr-4">
+    <div class="absolute top-0 right-0 mt-2 mr-4">
       ABBScore: {{ product.ABBScore }}
     </div>
     <div
