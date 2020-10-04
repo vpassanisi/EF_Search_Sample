@@ -1,12 +1,40 @@
 export const state = () => ({
   items: [],
   count: 0,
+  filters: {
+    packageSize: 10,
+    brands: []
+  },
+  limit: 10,
   isLoading: false
 });
 
+export const getters = {
+  filteredProducts: function(state) {
+    let arr = [...state.items];
+
+    if (state.filters.brands.length > 0) {
+      arr = arr.filter(item => state.filters.brands.includes(item.Brand.Desc1));
+    }
+
+    return arr.slice(0, state.limit);
+  },
+  brands: function(state) {
+    let arr = [];
+    for (let i = 0; i < state.items.length; i++) {
+      if (!arr.includes(state.items[i].Brand.Desc1)) {
+        arr.push(state.items[i].Brand.Desc1);
+      }
+    }
+
+    return arr;
+  }
+};
+
 export const actions = {
-  search: async function({ state, commit }, str) {
+  search: async function({ commit }, str) {
     commit("startLoading");
+    commit("resetLimit");
 
     const query = str.replace(/\s/g, "+");
 
@@ -42,8 +70,20 @@ export const mutations = {
       return 0;
     });
   },
+  addBrand(state, brand) {
+    state.filters.brands.push(brand);
+  },
+  removeBrand(state, brand) {
+    state.filters.brands = state.filters.brands.filter(val => val !== brand);
+  },
   sortByABBScore(state) {
     state.items.sort((a, b) => b.ABBScore - a.ABBScore);
+  },
+  addTen(state) {
+    state.limit += 10;
+  },
+  resetLimit(state) {
+    state.limit = 10;
   },
   startLoading(state) {
     state.isLoading = true;

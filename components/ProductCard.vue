@@ -11,7 +11,7 @@
       <div class="text-center font-bold text-xl">{{ product.Desc1 }}</div>
       <div class="text-center">{{ product.Brand.Desc1 }}</div>
     </div>
-    <div class="text-center text-xl">{{ price }}</div>
+    <div class="text-center text-xl font-semibold">{{ price }}</div>
   </div>
 </template>
 

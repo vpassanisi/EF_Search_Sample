@@ -4,30 +4,32 @@
       class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 xxl:grid-cols-4"
     >
       <ProductCard
-        v-for="item in limitedItems"
+        v-for="item in filteredProducts"
         :key="item.FoodItemID"
         :product="item"
       />
     </div>
-    <button @click="limit += 10">next</button>
+    <div class="flex items-center justify-center mt-8">
+      <button
+        class="bg-blue-a400 px-8 py-2 shadow text-white focus:outline-none"
+        @click="addTen"
+      >
+        Load Next Ten
+      </button>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapMutations, mapGetters } from "vuex";
 import ProductCard from "@/components/ProductCard.vue";
 
 export default {
-  data: function () {
-    return {
-      limit: 10,
-    };
-  },
   computed: {
-    ...mapState(["items"]),
-    limitedItems() {
-      return this.items.slice(0, this.limit);
-    },
+    ...mapGetters(["filteredProducts"]),
+  },
+  methods: {
+    ...mapMutations(["addTen"]),
   },
 };
 </script>
