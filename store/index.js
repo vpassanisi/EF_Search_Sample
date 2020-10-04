@@ -49,8 +49,6 @@ export const actions = {
 
       const json = await res.json();
 
-      console.log(json);
-
       commit("setItems", json);
     } catch (error) {
       console.log(error);

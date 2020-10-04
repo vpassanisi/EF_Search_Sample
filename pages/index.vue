@@ -13,7 +13,7 @@
         field above :)
       </div>
     </div>
-    <div class="flex items-center justify-center mt-8">
+    <div class="flex items-center justify-center my-8">
       <button
         class="bg-blue-a400 px-8 py-2 shadow text-white focus:outline-none"
         @click="addTwenty"

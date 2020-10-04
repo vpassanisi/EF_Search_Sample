@@ -12,7 +12,7 @@
         <option value="name">name</option>
       </select>
     </div>
-    <div class="sm:max-h-64 md:max-h-full overflow-y-scroll">
+    <div class="max-h-64 md:max-h-full overflow-y-scroll md:overflow-y-auto">
       <div>Brands:</div>
       <div v-for="brand in brands" :key="brand">
         <input
