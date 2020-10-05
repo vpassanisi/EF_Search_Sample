@@ -26,6 +26,12 @@ export const getters = {
       }
     }
 
+    arr.sort((a, b) => {
+      const brandA = a.toUpperCase();
+      const brandB = b.toUpperCase();
+      return brandA < brandB ? -1 : brandA > brandB ? 1 : 0;
+    });
+
     return arr;
   }
 };
